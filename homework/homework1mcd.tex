@@ -44,7 +44,7 @@
 \framebox{\parbox{\textwidth}{A gamble that offered \$500 with probability $\frac{3}{4}$ and \$-1,500 with probability $\frac{1}{4}$ would strictly decrease Bob's expected utility.}} With probability $\frac{3}{4}$ he would end up with \$2,000 ($u(b)=1$) and with probability $\frac{1}{4}$ Bob ends up with \$0 ($u(b)=0$). Thus, his expected utility is $\frac{3}{4} \cdot 1 + \frac{1}{4} \cdot 0 = \frac{3}{4} < 1$. This is a fair gamble because the expected value is $\frac{3}{4} \cdot \$500 + \frac{1}{4} \$-1,500 = \$375 + \$-375 = 0$. 
 \end{answer}
 
-
+% todo:
 \begin{answer}{2}
 \end{answer}
 
@@ -90,7 +90,57 @@ both of which make the other player indifferent.
 
 \framebox{\parbox{\textwidth}{The unique Nash equilibrium is the row player mixing between T and B with probability ($\frac{1}{3}, \frac{2}{3}$), and the column player mixing between L and C with probability ($\frac{3}{3}, \frac{5}{8}$).}}
 
-\paragraph{b}
+% todo: 
+\paragraph{b} 
+
+\paragraph{c} \framebox{\parbox{\textwidth}{The probabilities for the desired correlated equilibrium are found in Table \ref{tab:3c}.}} To find this equilibrium we must consider, for each possible action recommended to the player by the mediator:
+\begin{enumerate}
+\item Does the player have an incentive to obey the recommendation if the other player obeys?
+\item Does the other player have an incentive to obey?
+\end{enumerate}
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+0.6 & 0.2 \\
+\hline
+0.2 & 0  \\
+\hline
+\end{tabular}
+\caption{Correlated equilibrium for Problem 3(c).}
+\label{tab:3c}
+\end{center}
+\end{table}
+
+The game is symmetric, so we can show this by only going through the steps only once for each action. Let the first action indicate the top row (left column) for the row player (column player), and the second action refer to the bottom row (right column).
+
+Let $a$ denote the probability in the upper-left cell of the table, $b$ in the upper-right, and $c$ in the lower-left. The probability in the lower-right cell is zero as per the problem statement.
+
+Suppose the player is signalled to use their first action. Will the player obey if her opponent does? Yes, as long as:
+\begin{eqnarray*}
+EU_1(\text{first action}|\text{first action signalled}) = 5\frac{a}{a+b} + 3\frac{b}{a+b} &\geq& 6\frac{a}{a+b} = EU_1(\text{second action}|\text{first action signalled}) \\
+3b &\geq& a \\
+a &\leq& 3b.
+\end{eqnarray*}
+Will the second player obey the signal? Yes, if the following constraint holds? 
+\begin{eqnarray*}
+EU_2(\text{first action}|\text{first action signalled}) = 5\frac{a}{a+c} + 3\frac{c}{a+c} &\geq& 6\frac{a}{a+c} = EU_2(\text{second action}|\text{first action signalled}) \\
+a &\leq& 3c.
+\end{eqnarray*}
+
+What if the player is told to play the second action? If this is the case, the other player must have been told to play their first action, in which case the expected utility of playing the second action is 6, versus 5 for disobeying. 
+
+We can exploit the symmetry of the game to solve for $a,b,$ and $c$, and the goal of maximizing $a$ subject to the constraints:
+\begin{eqnarray*}
+a+b+c &=& 1 \\
+b &=& c \\
+a &=& 3b.
+\end{eqnarray*}
+From this, we arrive at $a=\frac{3}{5}, b=\frac{1}{5}, c=\frac{1}{5}$, as shown in Table \ref{tab:3c}.
+
+
+
 \end{answer}
 
 
@@ -113,6 +163,12 @@ R & 3, 2 & 1, 1 \\
 \label{tab:4a}
 \end{center}
 \end{table}
+
+% todo:
+\paragraph{b}
+
+% todo: 
+\paragraph{c}
 
 \end{answer}
 
