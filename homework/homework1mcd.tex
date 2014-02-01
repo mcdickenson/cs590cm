@@ -51,6 +51,9 @@
 
 \begin{answer}{3}
 
+\paragraph{a}
+Table \ref{tab:3a} represents the normal-form game for this problem with the additional convenience of labeled strategies. Neither player has a strictly dominant pure strategy. Additionally, the column player does not have a strictly dominant mixed strategy: no mix over L and R can dominate C (if the row player plays T), no mix over L and C can dominate R (if the row player plays M), and no mix over C and R can dominate L (if the row player plays B). 
+
 \begin{table}[h!]
 \begin{center}
 \begin{tabular}{l|c|c|c|}
@@ -67,9 +70,6 @@ Bottom & 0, 1 & 4, 0 & 4, 0 \\
 \label{tab:3a}
 \end{center}
 \end{table}
-
-\paragraph{a}
-Table \ref{tab:3a} represents the normal-form game for this problem with the additional convenience of labeled strategies. Neither player has a strictly dominant pure strategy. Additionally, the column player does not have a strictly dominant mixed strategy: no mix over L and R can dominate C (if the row player plays T), no mix over L and C can dominate R (if the row player plays M), and no mix over C and R can dominate L (if the row player plays B). 
 
 For the row player, no mixed strategy over M and B can dominate T (if the column player plays L) and no mixed strategy over T and M can dominate B (if the column player plays C), but M is dominated by a mix over T and B (e.g. $p_T=\frac{2}{5}, p_B=\frac{3}{5}$).
 
@@ -90,10 +90,51 @@ both of which make the other player indifferent.
 
 \framebox{\parbox{\textwidth}{The unique Nash equilibrium is the row player mixing between T and B with probability ($\frac{1}{3}, \frac{2}{3}$), and the column player mixing between L and C with probability ($\frac{3}{3}, \frac{5}{8}$).}}
 
-% todo: 
 \paragraph{b} 
 
-\paragraph{c} \framebox{\parbox{\textwidth}{The probabilities for the desired correlated equilibrium are found in Table \ref{tab:3c}.}} To find this equilibrium we must consider, for each possible action recommended to the player by the mediator:
+\framebox{\parbox{0.7\textwidth}{The $2 \times 2$ game in Table \ref{tab:3b} satisfies the four properties given:}}
+\begin{enumerate}
+\item The row player has a weakly dominant strategy but the column player does not.
+\item Top weakly dominates Bottom for the row player. Then, Left dominates Right for the column player. Top/Left is the equilibrium arrived at by iterated weak dominance.
+\item Bottom/Right is a pure-strategy Nash equilibrium. The column player has no incentive to modify ($3>0$), and the row player is indifferent between top and bottom, so she also will not deviate from this equilibrium.
+\item Both players prefer the second equilibrium: $2>1, 3>2$.
+\end{enumerate}
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{l|c|c|}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{Left} & \multicolumn{1}{c}{Right} \\
+\cline{2-3}
+Top    & 1, 2 & 2, 0  \\
+\cline{2-3}
+Bottom & 0, 1 & 2, 3 \\
+\cline{2-3}
+\end{tabular}
+\caption{Normal-form game for Problem 3(b) with labeled actions.}
+\label{tab:3b}
+\end{center}
+\end{table}
+
+To solve this, I set up the more general Table \ref{tab:3b-general}. The first constraint above gives us $w>x$ and $z>y$. The second constraint leads to $a>b$ and $c=d$. The fourth constraint gives $d>a$ and $z>w$. Combining all of these, we arrive at ordinal preferences for the row player of $c=d > a > b$ and for the column player of $z>w>y>x$. The payoffs in Table \ref{tab:3b} satisfy these rankings.
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{l|c|c|}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{Left} & \multicolumn{1}{c}{Right} \\
+\cline{2-3}
+Top    & $a, w$ & $c, x$  \\
+\cline{2-3}
+Bottom & $b, y$ & $d, z$ \\
+\cline{2-3}
+\end{tabular}
+\caption{Normal-form game for Problem 3(b), generalized.}
+\label{tab:3b-general}
+\end{center}
+\end{table}
+
+
+
+\paragraph{c} \framebox{\parbox{0.9\textwidth}{The probabilities for the desired correlated equilibrium are found in Table \ref{tab:3c}.}} To find this equilibrium we must consider, for each possible action recommended to the player by the mediator:
 \begin{enumerate}
 \item Does the player have an incentive to obey the recommendation if the other player obeys?
 \item Does the other player have an incentive to obey?
@@ -138,8 +179,6 @@ b &=& c \\
 a &=& 3b.
 \end{eqnarray*}
 From this, we arrive at $a=\frac{3}{5}, b=\frac{1}{5}, c=\frac{1}{5}$, as shown in Table \ref{tab:3c}.
-
-
 
 \end{answer}
 
