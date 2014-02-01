@@ -44,4 +44,53 @@
 \framebox{\parbox{\textwidth}{A gamble that offered \$500 with probability $\frac{3}{4}$ and \$-1,500 with probability $\frac{1}{4}$ would strictly decrease Bob's expected utility.}} With probability $\frac{3}{4}$ he would end up with \$2,000 ($u(b)=1$) and with probability $\frac{1}{4}$ Bob ends up with \$0 ($u(b)=0$). Thus, his expected utility is $\frac{3}{4} \cdot 1 + \frac{1}{4} \cdot 0 = \frac{3}{4} < 1$. This is a fair gamble because the expected value is $\frac{3}{4} \cdot \$500 + \frac{1}{4} \$-1,500 = \$375 + \$-375 = 0$. 
 \end{answer}
 
+
+\begin{answer}{2}
+\end{answer}
+
+
+\begin{answer}{3}
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{l|c|c|c|}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{Left} & \multicolumn{1}{c}{Center} & \multicolumn{1}{c}{Right} \\
+\cline{2-4}
+Top    & 5, 0 & 1, 2 & 4, 0 \\
+\cline{2-4}
+Middle & 2, 4 & 2, 4 & 3, 5 \\
+\cline{2-4}
+Bottom & 0, 1 & 4, 0 & 4, ) \\
+\cline{2-4}
+\end{tabular}
+\caption{Normal-form game for Problem 3(a) with labeled actions.}
+\label{tab:3a}
+\end{center}
+\end{table}
+
+\paragraph{a}
+Table \ref{tab:3a} represents the normal-form game for this problem with the additional convenience of labeled strategies. Neither player has a strictly dominant pure strategy. Additionally, the column player does not have a strictly dominant mixed strategy: no mix over L and R can dominate C (if the row player plays T), no mix over L and C can dominate R (if the row player plays M), and no mix over C and R can dominate L (if the row player plays B). 
+
+For the row player, no mixed strategy over M and B can dominate T (if the column player plays L) and no mixed strategy over T and M can dominate B (if the column player plays C), but M is dominated by a mix over T and B (e.g. $p_T=\frac{2}{5}, p_B=\frac{3}{5}$).
+
+We can now solve the subgame with row M eliminated, and see that a mix over L and C will dominate R for the column player. There are no dominant pure strategies in this subgame, so we must find the mixed strategy equilibrium. The column player mixes such that
+\begin{eqnarray*}
+5 p_L + 1 p_C &=& 0 p_L + 4 p_C \\
+5 p_L &=& 3 p_C \\
+p_L = \frac{3}{8} &,& p_C = \frac{5}{8},
+\end{eqnarray*}
+
+and the row player mixes such that
+
+\begin{eqnarray*}
+0 p_T + 1 p_B = 2 p_T + 0 p_B \\
+p_B = \frac{2}{3} &,& p_T = \frac{1}{3},
+\end{eqnarray*}
+both of which make the other player indifferent. 
+
+\framebox{\parbox{\textwidth}{The unique Nash equilibrium is the row player mixing between T and B with probability ($\frac{1}{3}, \frac{2}{3}$), and the column player mixing between L and C with probability ($\frac{3}{3}, \frac{5}{8}$).}}
+
+
+\end{answer}
+
 \end{document}
