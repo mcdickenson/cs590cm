@@ -5,10 +5,10 @@ param good_probs{j in OUTCOMES, i in EQUATIONS};
 param bad_probs{j in OUTCOMES, i in EQUATIONS};
 
 var utility{j in OUTCOMES}, >=0, <=1;
+var margin{i in EQUATIONS}: sum{j in OUTCOMES} good_probs[j,i]*utility[j] - bad_probs[j,i]*utility[j];
 
 
-maximize margin: sum{j in OUTCOMES, i in EQUATIONS}
-  good_probs[j,i]*utility[j] - bad_probs[j,i]*utility[j];
+maximize total_margin: sum{i in EQUATIONS} margin[i];
 
 s.t. more_utility{i in EQUATIONS}: sum{j in OUTCOMES} good_probs[j,i]*utility[j] >= bad_probs[j,i]*utility[j];
 
