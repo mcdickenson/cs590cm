@@ -203,8 +203,37 @@ R & 3, 2 & 1, 1 & 3, 2 & 1, 1 \\
 \end{center}
 \end{table}
 
-% todo:
-\paragraph{b}
+
+\paragraph{b} We wish to find a Nash equilibrium in which player 1 sometimes plays L ($P_{1,L}>0$). To do so, we must find mixing proportions such that player 2 is indifferent between L and R when in the first information set (denoted L/M):
+
+
+\begin{eqnarray*}
+2 P_{1,L} + 3 P_{1,M} &=& 3 P_{1,L} + 2 P+{1,M} \\
+P_{1,L} &=& P_{1,M},
+\end{eqnarray*}
+
+which means that the first player must play L and M with equal probability. How should the second player mix between L and R in the L/M information set?
+
+\begin{eqnarray*}
+5 P_{2,L}|L/M + 0 P_{2,R|L/M} &=& 0 P_{2,L|L/M} + 5 P_{2,R|L/M} \\
+P_{2,L|L/M} + P_{2,R|L/M} & 1 \\
+P_{2,L|L/M} = P_{2,R|L/M} &=& \frac{1}{2}
+\end{eqnarray*}
+
+When in the L/M information set, the second player randomizes with equal probability between playing L and R. If the second player does this, their expected utility of playing L or M is 2.5. Thus, player 2 must also randomize between L and R if the first player played right (otherwise the first player will play right and the second player will play left, with player 1 getting a utility of $3>2.5$). Specifically, player 2 randomizes in this information set such that:
+
+\begin{eqnarray*}
+3 P_{2,L|R} + 1 P_{2,R|R} &=& 2.5 \\
+P_{2,L|R} + P_{2,R|R} &=& 1 \\
+2 P_{2,L|R} &=& 1.5 \\
+P_{2,L|R} &=& \frac{3}{4} \\
+P_{2,R|R} &=& \frac{1}{4}
+\end{eqnarray*}
+
+When player 1 has played R, player 2 randomizes between L and R with probability $(\frac{3}{4}, \frac{1}{4}$. Although this lowers player 2's expected utility in this information set, it makes player 1 indifferent between L, M, and R, which is better for player 2 overall. 
+
+\framebox{\parbox{0.9\textwidth}{A Nash equilibrium in which player 1 sometimes plays left is \\
+$(P_{1,L}=P_{1,M}=P_{1,R} = \frac{1}{3}, P_{2,L|L/M}=P_{2,R|L/M}=\frac{1}{2}, P_{2,L|R}=\frac{3}{4}, P_{2,R|R}=\frac{1}{4}$).}}
 
 % todo: 
 \paragraph{c}
