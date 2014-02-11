@@ -6,6 +6,7 @@
 \usepackage{enumerate}
 \usepackage{fancyhdr}
 \usepackage{hyperref}
+\usepackage{listings}
 \usepackage{mathrsfs}
 \usepackage{xcolor}
 \usepackage[margin=3cm]{geometry}
@@ -44,8 +45,13 @@
 \framebox{\parbox{\textwidth}{A gamble that offered \$500 with probability $\frac{3}{4}$ and \$-1,500 with probability $\frac{1}{4}$ would strictly decrease Bob's expected utility.}} With probability $\frac{3}{4}$ he would end up with \$2,000 ($u(b)=1$) and with probability $\frac{1}{4}$ Bob ends up with \$0 ($u(b)=0$). Thus, his expected utility is $\frac{3}{4} \cdot 1 + \frac{1}{4} \cdot 0 = \frac{3}{4} < 1$. This is a fair gamble because the expected value is $\frac{3}{4} \cdot \$500 + \frac{1}{4} \$-1,500 = \$375 + \$-375 = 0$. 
 \end{answer}
 
-% todo:
+The margin for the first and third preference listings are satisfied by more than necessary.
+
 \begin{answer}{2}
+
+\lstinputlisting[caption=MathProg Code]{../code/hw1-util-estimator.mod}
+
+\lstinputlisting[caption=MathProg Output]{../code/hw1-util-estimator.out}
 \end{answer}
 
 
