@@ -1,13 +1,12 @@
 set OUTCOMES;
 set EQUATIONS;
 
-var utility{j in OUTCOMES}, >=0, <=1;
+var utility{j in OUTCOMES}, >= 0, <= 1;
 
-param n;
-param good_probs{i in EQUATIONS, j in OUTCOMES} ;
+param good_probs{i in EQUATIONS, j in OUTCOMES};
 param bad_probs{i in EQUATIONS, j in OUTCOMES};
 
-maximize total_margin: sum{i in EQUATIONS, j in OUTCOMES} (good_probs[i,j]-bad_probs[i,j])*utility[j];
+maximize total_margin{i in EQUATIONS}: sum{j in OUTCOMES} good_probs[i,j]*utility[j] - sum{j in OUTCOMES} bad_probs[i,j]*utility[j];
 
 s.t. more_utility{i in EQUATIONS}: sum{j in OUTCOMES} good_probs[i,j]*utility[j] >= sum{j in OUTCOMES} bad_probs[i,j]*utility[j];
 
@@ -16,8 +15,6 @@ data;
 
 set OUTCOMES := a b c d;
 set EQUATIONS := 1 2 3 4;
-
-param n := 4;
 
 param good_probs :
    a   b   c   d :=
