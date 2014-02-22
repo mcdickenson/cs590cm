@@ -42,7 +42,7 @@ The Copeland and Simpson rules both depend on pairwise comparisons. For all pair
 
 % it seems that Bucklin and veto would also satisfy OCO
 
-\framebox{\parbox{1.05\textwidth}{Approval, Plurality, and Single Transferrable Vote (STV) do not satisfy the OCO criterion.}} 
+\framebox{\parbox{1.05\textwidth}{Approval, Plurality, and Single Transferable Vote (STV) do not satisfy the OCO criterion.}} 
 
 In an approval vote setting, the two opposite voters will not necessarily both approve all candidates preferred to their median candidate, $c_{m/2}$. If the first voter approves her preferred $k$ candidates and the second voter approves his preferred $l$ candidates ($l>k$ without loss of generality), then $l-k$ candidates ($c_{m+(k-l)/2}, \ldots, c_{m+(l-k)/2}$ will receive approval votes from both voters, which could affect the outcome of the overall election. 
 
@@ -57,7 +57,14 @@ When plurality voting is being used, as long as the winner without the opposite 
 To see that the Bucklin rule can fail to satisfy CCO, suppose that there are three candidates $c_1,c_2,c_3$. In the original election (without adding sets of voters with cyclical preferences), suppose $x$ voters rank the candidates $c_1,c_2,c_3$ and $y$ voters rank the candidates $c_2,c_1,c_3$. Candidate $c_1$ wins as long as $x+y>y$, i.e. if $y>1$. Suppose we add $n$ cycles of votes (i.e. $3n$ new votes). Candidate $c_2$ now wins as long as $n>x$.
 
 
-\paragraph{c}
+\paragraph{c} \framebox{\parbox{0.9\textwidth}{Borda, Veto, Plurality, Bucklin, and Copeland all satisfy the OCCO criterion. Approval does not.}} 
+
+With opposite cycles, all candidates will receive the same Borda score because all opposites are included. Plurality and veto allow opposite cycles to cancel because every candidate will appear in first or last (respectively) an equal number of times. Similarly for Bucklin and Copeland, all candidates in the opposite cycles multiset will win an equal number of pairwise elections.
+
+Approval voting does not satisfy the OCCO criterion because voters can choose $m$ subsets of the $m$ candidates to approve or disapprove, which can make it arbitrarily difficult to interpret their preferences. In some pathological cases the opposite cycles cancel out (every voter approves, or every voter disapproves, of every candidate), but in many cases similar to those discussed above they do not.
+
+
+\paragraph{d} \framebox{\parbox{0.9\textwidth}{OCO is stronger than OCCO (it seems that Plurality, e.g., would satisfy OCCO but not OCO). CCO is also stronger than OCCO (e.g. Bucklin seems to satisfy OCCO but not CCO). OCO and CCO are incomparable (Bucklin satisfies OCO but not CCO; Plurality satisfies CCO but not OCO).}} 
 
 \end{answer}
 
