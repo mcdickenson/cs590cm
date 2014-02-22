@@ -64,13 +64,20 @@ With opposite cycles, all candidates will receive the same Borda score because a
 Approval voting does not satisfy the OCCO criterion because voters can choose $m$ subsets of the $m$ candidates to approve or disapprove, which can make it arbitrarily difficult to interpret their preferences. In some pathological cases the opposite cycles cancel out (every voter approves, or every voter disapproves, of every candidate), but in many cases similar to those discussed above they do not.
 
 
-\paragraph{d} \framebox{\parbox{0.9\textwidth}{OCO is stronger than OCCO (it seems that Plurality, e.g., would satisfy OCCO but not OCO). CCO is also stronger than OCCO (e.g. Bucklin seems to satisfy OCCO but not CCO). OCO and CCO are incomparable (Bucklin satisfies OCO but not CCO; Plurality satisfies CCO but not OCO).}} 
+\paragraph{d} \framebox{\parbox{0.95\textwidth}{OCO is stronger than OCCO (it seems that Plurality, e.g., would satisfy OCCO but not OCO). CCO is also stronger than OCCO (e.g. Bucklin seems to satisfy OCCO but not CCO). OCO and CCO are incomparable (Bucklin satisfies OCO but not CCO; Plurality satisfies CCO but not OCO).}} 
 
 \end{answer}
 
 \begin{answer}{2}
 
 % \lstinputlisting[caption=MathProg Code]{../code/hw1-util-estimator.mod}
+
+\paragraph{a} \framebox{\parbox{0.95\textwidth}{The optimal allocation is to give rackets to Alice ($U_A=8$), Bob ($U_B=8$), and Carol ($U_C=4$) for a total utility of 20. The VCG payments are 7 for Alice and Bob, 3 for Carol, and zero for Daniel, Eva, and Frank.}}
+
+% \paragraph{b} In general (general graphs, bids, numbers of rackets), is the problem of finding the optimal allocation solvable in polynomial time, or NP-hard? (Hint: think about the Clique problem (which is almost the same as the Independent Set problem).)
+% It's NP-hard. There are an exponential number of possible allocations (for $k$ rackets and $n$ nodes in the graph, there are $n \choose k$ possibilities). 
+
+\paragraph{c} \framebox{\parbox{0.95\textwidth}{The optimal allocation is to give rackets to Alice ($U_A=4$), Bob ($U_B=1$), Carol ($U_C=5$), and Daniel ($U_D=5$) for a total utility of 15. The VCG payments are 3 for Alice, 2 for Carol, and zero for everyone else.}}
 
 \end{answer}
 
