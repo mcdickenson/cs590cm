@@ -1,0 +1,92 @@
+\input{preamble}
+
+% Edit these as appropriate
+\newcommand\course{CS590.04}
+\newcommand\semester{Spring 2014}     % <-- current semester
+\newcommand\hwnum{1}                  % <-- homework number
+\newcommand\yourname{Matt Dickenson} % <-- your name
+\newcommand\login{mcd31}           % <-- your NetID
+\newcommand\hwdate{Due: 28 February, 2014}           % <-- HW due date
+
+\newenvironment{answer}[1]{
+  \subsubsection*{Problem #1}
+}
+
+
+\pagestyle{fancyplain}
+\headheight 35pt
+\lhead{\yourname\ \texttt{\login}\\\course\ --- \semester}
+\chead{\textbf{\Large Homework \hwnum}}
+\rhead{\hwdate}
+\headsep 10pt
+
+\begin{document}
+
+% \noindent \emph{Homework Notes:} 
+
+\begin{answer}{1}
+\paragraph{a} 
+
+\framebox{\parbox{0.85\textwidth}{Borda, Copeland, and Simpson are rules that satisfy the OCO criterion.}} 
+
+For Borda, let $B(c_i)$ denote the total Borda score for candidate $c_i$, and $B_j(c_i)$ denote the portion of the Borda score for $c_i$ resulting from the $j^{th}$ voter's ranking. With two opposite votes $v_1=(c_1, c_2, \ldots, c_m)$ and $v_2=(c_m, c_{m-1}, \ldots, c_1)$ the Borda scores are:
+\begin{eqnarray*}
+B(c_1) &=& B_1(c_1) + B_2(c_1) = (m-1) + 0 = m-1 \\
+B(c_2) &=& B_1(c_2) + B_2(c_2) = (m-2) + 1 = m-1 \\
+&\ldots& \\
+B(m) &=& B_1(m) + B_2(m) = 0 + (m-1) = m-1
+\end{eqnarray*}
+Thus, the Borda scores for opposite votes cancel out and do not affect the winner when they are combined with another set of votes.
+
+The Copeland and Simpson rules both depend on pairwise comparisons. For all pairs of opposite votes and each pair of candidates $c_i \neq c_j$, $c_i$ and $c_j$ will each win one pairwise comparison and lose the other. This causes the two rules to satisfy OCO. 
+
+% it seems that Bucklin and veto would also satisfy OCO
+
+\framebox{\parbox{1.05\textwidth}{Approval, Plurality, and Single Transferrable Vote (STV) do not satisfy the OCO criterion.}} 
+
+In an approval vote setting, the two opposite voters will not necessarily both approve all candidates preferred to their median candidate, $c_{m/2}$. If the first voter approves her preferred $k$ candidates and the second voter approves his preferred $l$ candidates ($l>k$ without loss of generality), then $l-k$ candidates ($c_{m+(k-l)/2}, \ldots, c_{m+(l-k)/2}$ will receive approval votes from both voters, which could affect the outcome of the overall election. 
+
+When plurality voting is being used, as long as the winner without the opposite votes $c_{-1,-m}$ is not either of the opposite voters most preferred candidates ($c_1$ and $c_m$, respectively) and there are at least two non-oppositve voters, the opposite votes will not affect the election. This is because $c_{-1,-m}$ will have two or more votes and a single vote from each of the two opposite voters cannot tip the scales. By similar logic, both of the opposite voters must prefer $c_{-1,-m}$ to their opposite's most preferred candidate, so this candidate will still beat $c_1$ and $c_m$ in some elections using STV.
+
+
+\paragraph{b} \framebox{\parbox{0.85\textwidth}{Borda, Copeland, and Simpson are rules that satisfy the CCO criterion,}} for similar reasons as those discussed above. 
+% it seems that veto and plurality also satisfy CCO
+
+\framebox{\parbox{0.7\textwidth}{Approval, Bucklin, and STV do not satisfy the CCO criterion.}} The reasoning for Approval is the similar to the explanation above. STV can fail to satisfy CCO because the ranks in the original election (without the addition of cycles) may be different from the cyclic votes. For example, if the cycles are over $c_1>c_2> \ldots > c_m$, some of the other voters may prefer $c_m>c_2<c_1>...$, which could affect the outcome when using STV.
+
+To see that the Bucklin rule can fail to satisfy CCO, suppose that there are three candidates $c_1,c_2,c_3$. In the original election (without adding sets of voters with cyclical preferences), suppose $x$ voters rank the candidates $c_1,c_2,c_3$ and $y$ voters rank the candidates $c_2,c_1,c_3$. Candidate $c_1$ wins as long as $x+y>y$, i.e. if $y>1$. Suppose we add $n$ cycles of votes (i.e. $3n$ new votes). Candidate $c_2$ now wins as long as $n>x$.
+
+
+\paragraph{c}
+
+\end{answer}
+
+\begin{answer}{2}
+
+% \lstinputlisting[caption=MathProg Code]{../code/hw1-util-estimator.mod}
+
+\end{answer}
+
+
+% \begin{answer}{3}
+
+% \begin{table}[h!]
+% \begin{center}
+% \begin{tabular}{l|c|c|c|}
+% \multicolumn{1}{c}{} & \multicolumn{1}{c}{Left} & \multicolumn{1}{c}{Center} & \multicolumn{1}{c}{Right} \\
+% \cline{2-4}
+% Top    & 5, 0 & 1, 2 & 4, 0 \\
+% \cline{2-4}
+% Middle & 2, 4 & 2, 4 & 3, 5 \\
+% \cline{2-4}
+% Bottom & 0, 1 & 4, 0 & 4, 0 \\
+% \cline{2-4}
+% \end{tabular}
+% \caption{Normal-form game for Problem 3(a) with labeled actions.}
+% \label{tab:3a}
+% \end{center}
+% \end{table}
+
+% \end{answer}
+
+\end{document}
