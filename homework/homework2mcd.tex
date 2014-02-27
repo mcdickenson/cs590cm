@@ -80,14 +80,14 @@ Approval voting does not satisfy the OCCO criterion because voters can choose $m
 
 % explain how independent set reduces to clique
 
-% It's NP-hard. T
 For general graphs $G$ with $n$ nodes, there are $n \choose k$ possible allocations of $k$ rackets. Because of the way that the problem is defined, the optimal allocation will always allocate all of the rackets, assuming $k<n$ (i.e. we can do no worse by allocating all rackets, even if the receiver has no neighbors with whom she can play). Furthermore, we are better off allocating rackets to nodes whose neighbors also have rackets, so that they can play together. The solution to the racket problem, then, will always be a maximally connected subgraph of $G$. 
 
 If we were given a graph $G=\{V,E\}$ and asked to perform Clique, we could instantiate the Racket problem with the graph $G$, arbitrary valuations (e.g. $1$), and $k$ rackets. (This would be the $k$-clique problem; more generally we could find the maximal clique and reject the solution if its size were greater than $k$). Because Clique is NP-complete (Karp 1972) and can be reduced to the Racket problem, the Racket problem is also NP-complete. 
 
 \paragraph{c} \framebox{\parbox{0.95\textwidth}{The optimal allocation is to give rackets to Alice ($U_A=4$), Bob ($U_B=1$), Carol ($U_C=5$), and Daniel ($U_D=5$) for a total utility of 15. The VCG payments are 3 for Alice, 2 for Carol, and zero for everyone else.}}
 
-\paragraph{d} 
+\paragraph{d} \framebox{\parbox{0.95\textwidth}{For general graphs and bids, the problem of finding the optimal outcome is solvable in polynomial time.}} Because each racket recipient can play with at most one neighbor, we can reformulate the problem so that the sum of a pair of valuations is the weight on the edge between two nodes (e.g. the weight on the Alice-Bob edge is 5 and the weight for Alice-Carol is 7 in the example given). In this way we can reduce racket allocation with a fixed number of rackets to weighted bipartite matching, which is solvable in $O(V^2 E)$ time for a graph with $V$ nodes (vertices) and $E$ edges. 
+
 % (13 points) In general (general graphs and bids), is the problem of finding the optimal outcome solvable in polynomial time, or NP-hard? (Hint: think about the Maximum-Weighted-Matching problem. Keep in mind that the number of rackets is limited, though.)
 
 % http://en.wikipedia.org/wiki/Matching_(graph_theory)#In_general_graphs
