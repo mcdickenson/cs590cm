@@ -12,6 +12,7 @@
 \usepackage{epsfig}
 \usepackage{hyperref}
 \usepackage{natbib}
+\setlength{\bibsep}{0.0pt}
 
 \setlength{\oddsidemargin}{0.25 in}
 \setlength{\evensidemargin}{-0.25 in}
@@ -61,7 +62,7 @@ My proposed project consists of three parts, centered around the implementation 
 %Define this problem. What question are you trying to
 %solve? What is the goal of the project?
 
-The software application will be useful for a group coordinating on a single outcome by aggregating their preferences. An intended use case is choosing a movie for a night out with friends. A user would create a poll by supplying a question (e.g. “What movie should we see?”), candidate options (e.g. movies) and voters (a list of email addresses to be contacted). A unique link would then be sent to each voter, who would supply her ranking of the choices. When all votes have been recorded, an email would be sent to all voters with the outcome (and possibly more info, such as anonymized rankings), and a link where they can indicate their satisfaction with the outcome.
+The software application will be useful for a group coordinating on a single outcome by aggregating their preferences, e.g. selecting a movie for a night out with friends. A user creates a poll by supplying a question (e.g. “What movie should we see?”), candidate options (e.g. movies) and voters (a list of email addresses to be contacted). A unique link will then be sent to each voter, who supplies her ranking of the choices. When all votes have been recorded, an email will be sent to all voters with the outcome (and possibly more info, such as anonymized rankings), and a link where they can indicate their satisfaction with the outcome.
 
 One goal for this application is ease of use, in order to set it apart from available online survey applications.\footnote{E.g. \url{http://surveymonkey.com} and \url{http://doodle.com}.} To enhance ease of use, users will be informed of the default rule that will be used if they do not submit a vote, such as critics' ratings on \href{http://rottentomatoes.com}{Rotten Tomatoes}. Other desiderata are discussed in the next section.
 
@@ -72,7 +73,7 @@ One goal for this application is ease of use, in order to set it apart from avai
 %parameters? Do the parameters have interpretations in terms of the
 %solution to the problem you are trying to answer?
 
-Desirable properties of the voting method arise from both normative and pragmatic concerns. Anonymity and neutrality ensure that the names of the voters and candidates, respectively, do not influence the outcome. Candidates can be presented to voters in a randomized order to ensure that the format of the list does not bias results. Unanimity requires that if candidate $A$ is preferred over $B$ by all voters, $B$ should not win. The universal domain of potential ballots will be considered in the Monte Carlo simulations, to ensure that the application works with any opinion a voter might entertain about the candidates. Finally, we desire a rule with reinforcement, so that if disjoint sets of voters select the same winner, that candidate should win when the voters are pooled. Practically, this ensures that two small groups of friends who use the app and arrive at the same movie should also have seen that movie if they voted as a single group.
+Desirable properties of the voting method for this application arise from both normative and pragmatic concerns. Anonymity and neutrality ensure that the names of the voters and candidates, respectively, do not influence the outcome. Candidates can be presented to voters in a randomized order to ensure that the format of the list does not bias results. Unanimity requires that if candidate $A$ is preferred over $B$ by all voters, $B$ should not win. The universal domain of potential ballots will be considered in the Monte Carlo simulations, to ensure that the application works with any opinion a voter might entertain about the candidates. Finally, we desire a rule with reinforcement, so that if disjoint sets of voters select the same winner, that candidate should win when the voters are pooled. Practically, this ensures that two small groups of friends who use the app and arrive at the same movie should also have seen that movie if they voted as a single group.
 % non-dictatorial? 
 % anonymity
 % neutrality
@@ -80,9 +81,9 @@ Desirable properties of the voting method arise from both normative and pragmati
 % universal domain
 % reinforcement
 
-If there are two candidates, the only social decision method that satisfies neutrality, anonymity, and positive responsiveness (if a candidate is tied for the win and moves up in rankings, it will become the winner) is majority rule \citep{may1952}. There are softer conditions such as Pareto optimality that can be used to motivate the use of majority rule if positive responsiveness is thought to be too strict \citep{acsan2002,j2003majority}. If there are more than two candidates, only a scoring rule will satisfy anonymity, neutrality, reinforcement, and continuity (if two subgroups of voters select different winners, then there is some number $k$ such that $k$ copies of the first subgroup plus a single copy of the second subgroup will elect the first group's winner) \citep{young1975}. 
+If there are two candidates, the only social decision method that satisfies neutrality, anonymity, and positive responsiveness (if a candidate is tied for the win and moves up in rankings, it will become the winner) is majority rule \citep{may1952}. Less strict conditions, such as Pareto optimality, also motivate the use of majority rule even if positive responsiveness is thought to be too strict \citep{acsan2002,j2003majority}. If there are more than two candidates, only a scoring rule will satisfy anonymity, neutrality, reinforcement, and continuity (if two subgroups of voters select different winners, then there is some number $k$ such that $k$ copies of the first subgroup plus a single copy of the second subgroup will elect the first group's winner) \citep{young1975}. 
 
-What voting rule should we choose? The Kemeny rule (a.k.a the Kemeny-Young method or maximum likelihood voting) chooses the majority alternative (whenever it exists), anonymity, neutrality, unanimity, and reinforcement, along with local independence of irrelevant alternatives \citep{kemeny1959,young1978,young1995}. However, there are two major downsides to using the Kemeny rule: it is NP-hard \citep{conitzer2006improved,davenport2004} and can be manipulated. We can implement a linear program solver to determine the Kemeny winner in uses such as those envisioned for this project. The probability of successful manipulation will be assess using Monte Carlo simulation.
+What voting rule should we choose? The Kemeny rule (a.k.a the Kemeny-Young method or maximum likelihood voting) chooses the majority alternative (whenever it exists), and satisfies anonymity, neutrality, unanimity, and reinforcement, along with local independence of irrelevant alternatives \citep{kemeny1959,young1978,young1995}. However, there are two major downsides to using the Kemeny rule: it is NP-hard \citep{conitzer2006improved,davenport2004} and can be manipulated. We can implement a linear program solver to determine the Kemeny winner in uses such as those envisioned for this project. The probability of successful manipulation will be assessed using Monte Carlo simulation.
 
 
 \section{Results and Validation}
@@ -92,15 +93,18 @@ What voting rule should we choose? The Kemeny rule (a.k.a the Kemeny-Young metho
 % compare these results against? How will you validate the answers 
 % and your uncertainty in the answers?
 
-It is unlikely that sizable groups of users will conduct their group preference aggregation using the application proposed here in the near-term. Thus, to assess the vulnerability of Kemeny elections to manipulation, a series of Monte Carlo simulations will be conducted with hypothetical voters and candidates. The results will be compared with Borda count to determine whether the Kemeny rule is more appropriate for this setting.
+It is unlikely that sizable groups of users will conduct their group preference aggregation using the proposed application in the near-term. Thus, to assess the vulnerability of Kemeny elections to manipulation, a series of Monte Carlo simulations will be conducted with hypothetical voters and candidates. The results will be compared with Borda count to determine whether the Kemeny rule is more appropriate for this setting.
 
 \section{Implications and Further Research}
 
 The Kemeny rule has a number of desirable properties, but is relatively unknown to the public at large. Implementing a web application where users can employ Kemeny voting to coordinate on a group outcome, such as which movie to attend, will help to demonstrate the attractiveness of this method. Because it is NP-hard, a linear program will make using the application simpler than computing the winner by hand. Soliciting satisfaction ratings after the election will help to indicate whether the application is successful and merits wider use. Monte Carlo simulations will estimate the sensitivity to manipulation relative to other rules. 
 
+\vspace{-0.3in}
+
 \begingroup
 \renewcommand{\section}[2]{}
 \bibliographystyle{unsrt}
+\
 \bibliography{/Users/mcdickenson/Documents/Templates/RefLib.bib}
 \endgroup
 
