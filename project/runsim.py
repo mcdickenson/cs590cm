@@ -73,7 +73,6 @@ def runsim(datawriter=None, movies=[], rule="borda", w=0.5, n_nonmanip=5, prior=
     manipulator_strat_vote[1], 
     manipulator_strat_vote[3], 
     manipulator_strat_vote[4], 
-    manipulator_strat_vote[5],
     winner,
     total_utils_in_outcome,
     total_utils_in_true,
