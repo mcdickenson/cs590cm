@@ -88,8 +88,8 @@ class Agent(object):
   def calcTruePrefs(self, movies):
     utils = dict((m, self.calcUtil(m)) for m in movies)
     sorted_utils = sorted(utils, key=utils.get, reverse=True)
-    print "sorted_utils:"
-    print sorted_utils
+    # print "sorted_utils:"
+    # print sorted_utils
     return sorted_utils
 
   def getNonmanipVotes(self, movies, prior, count):
@@ -125,12 +125,12 @@ class Agent(object):
       # tmp_movies.remove(normal_winner)
       middle_prefs = self.calcTruePrefs(tmp_movies)
       strat_prefs = [true_prefs[0]] + middle_prefs + [normal_winner]
-      print "strat_prefs"
-      print strat_prefs
+      # print "strat_prefs"
+      # print strat_prefs
       # run the rule
       vote_ary = [strat_prefs] + nonmanipvotes
       tmp_poll = Poll(movies)
-      print tmp_poll
+      # print tmp_poll
       tmp_winner = tmp_poll.run(vote_ary, rule=rule)
       for m in movies:
         if m.name == tmp_winner:

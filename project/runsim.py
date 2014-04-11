@@ -1,5 +1,6 @@
 from sim import * 
 import csv 
+import random
 import threading
 import time
 import Queue
@@ -30,7 +31,7 @@ def runsim(datawriter=None, movies=[], rule="borda", w=0.5, n_nonmanip=5, prior=
   tmp_winner = tmp_poll.run(vote_ary, rule=rule)
 
   for movie in movies:
-    if movie.name == tmpwinner:
+    if movie.name == tmp_winner:
       true_winner_movie = movie 
   
   if manipulator_strat_vote == manipulator_true_vote:
@@ -48,12 +49,12 @@ def runsim(datawriter=None, movies=[], rule="borda", w=0.5, n_nonmanip=5, prior=
       winner_movie = movie 
 
   total_utils_in_true_manipulator = manipulator.calcUtil(true_winner_movie)
-  total_utils_in_true = total_utils_in_true_maninpulator
+  total_utils_in_true = total_utils_in_true_manipulator
   for nm in nonmanips:
     total_utils_in_true += nm.calcUtil(true_winner_movie)
 
   if manipulation:
-    total_utils_manipulator = total_utils_in_true_maninpulator
+    total_utils_manipulator = total_utils_in_true_manipulator
     total_utils_in_outcome = total_utils_in_true
   else:
     total_utils_manipulator = manipulator.calcUtil(winner_movie)
@@ -137,7 +138,7 @@ col_names = [ "rule",
     "total_utils_in_true_manipulator",
   ]
 
-datawriter.writerow(col_names)
+data_writer.writerow(col_names)
 random.seed(8675309)
 total_threads = 2
 simulations_per_seed = 1
