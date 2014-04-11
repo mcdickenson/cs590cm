@@ -174,7 +174,7 @@ for rule in rules:
   for w in ws:
     for prior in priors:
       for n in ns:
-        for i in range(100):
+        for i in range(1):
           simseeds.append({
             'movies': movies,
             'rule': rule,
