@@ -100,7 +100,7 @@ class Agent(object):
 
   def calcManipulation(self, movies, rule="borda", nonmanipvotes=[], prior=(1,1), count=5):
     if len(nonmanipvotes)==0:
-      nonmanipvotes = self.getNonmanipVotes(movies, nonmanipvotes, prior, count)
+      nonmanipvotes = self.getNonmanipVotes(movies, prior, count)
     # get normal winner
     true_prefs = self.calcTruePrefs(movies)
     vote_ary = [true_prefs] + nonmanipvotes
