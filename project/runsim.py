@@ -80,6 +80,11 @@ def runsim(datawriter=None, movies=[], rule="borda", w=0.5, n_nonmanip=5, prior=
     total_utils_in_true_manipulator,
   ]
 
+folder_name = "./data/"
+t = ("%f" % time.time())[-6:]
+data_filename = folder_name + "simdata-" + t + ".csv"
+data_outfile = open(data_filename, 'w')
+data_writer = csv.writer(data_outfile)
 
 class ThreadSim(threading.Thread):
   def __init__(self, threadID, q):
@@ -101,7 +106,7 @@ class ThreadSim(threading.Thread):
           seed['perfect_info'],
           seed['i'])
 
-        runsim(datawriter=datawriter, 
+        runsim(datawriter=data_writer, 
           movies=movies, 
           rule=seed['rule'], 
           w=seed['w'],
@@ -112,12 +117,6 @@ class ThreadSim(threading.Thread):
       else:
         queueLock.release()
     print "Exiting thread " + str(self.threadID)
-
-folder_name = "./data/"
-t = ("%f" % time.time())[-6:]
-data_filename = folder_name + "simdata-" + t + ".csv"
-data_outfile = open(data_filename, 'w')
-data_writer = csv.writer(data_outfile)
 
 col_names = [ "rule", 
     "n_nonmanip", 
