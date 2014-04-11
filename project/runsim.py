@@ -53,7 +53,7 @@ def runsim(datawriter=None, movies=[], rule="borda", w=0.5, n_nonmanip=5, prior=
   for nm in nonmanips:
     total_utils_in_true += nm.calcUtil(true_winner_movie)
 
-  if manipulation:
+  if not manipulation:
     total_utils_manipulator = total_utils_in_true_manipulator
     total_utils_in_outcome = total_utils_in_true
   else:
@@ -151,7 +151,7 @@ m  = Movie("Muppets",         0.79, 0.67)
 gb = Movie("Grand Budapest",  0.92, 0.90)
 movies  = [ca, n, d, m, gb]
 
-rules = ["borda"]
+rules = ["borda", "plurality", "veto"]
 ws = [0.1, 0.3, 0.5, 0.7, 0.9]
 priors = [(9,1), (7,1), (5,1), (3,1), (1,1)]
 ns = range(1,11)
@@ -159,19 +159,35 @@ ns = range(1,11)
 simseeds = []
 for rule in rules:
   for w in ws:
-    for prior in priors:
-      for n in ns:
+    for n in ns:
+      for prior in priors:
         for perfect in [True, False]:
-          for i in range(1):
-              simseeds.append({
-                'movies': movies,
-                'rule': rule,
-                'w': w,
-                'n': n,
-                'prior': prior,
-                'perfect_info': perfect,
-                'i': i
-              })
+          for i in range(100):
+            simseeds.append({
+              'movies': movies,
+              'rule': rule,
+              'w': w,
+              'n': n,
+              'prior': prior,
+              'perfect_info': perfect,
+              'i': i
+            })
+
+# for rule in rules:
+#   for w in ws:
+#     for prior in priors:
+#       for n in ns:
+#         perfect in [True, False]:
+#         for i in range(1):
+#             simseeds.append({
+#               'movies': movies,
+#               'rule': rule,
+#               'w': w,
+#               'n': n,
+#               'prior': prior,
+#               'perfect_info': perfect,
+#               'i': i
+#             })
 
 workQueue = Queue.Queue()
 queueLock = threading.Lock()
