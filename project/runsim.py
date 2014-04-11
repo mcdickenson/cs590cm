@@ -159,32 +159,19 @@ ns = range(1,11)
 simseeds = []
 for rule in rules:
   for w in ws:
-    for n in ns:
-      for i in range(100):
-        simseeds.append({
-          'movies': movies,
-          'rule': rule,
-          'w': w,
-          'n': n,
-          'prior': (1,1),
-          'perfect_info': True,
-          'i': i
-        })
-
-for rule in rules:
-  for w in ws:
     for prior in priors:
       for n in ns:
+        perfect in [True, False]:
         for i in range(1):
-          simseeds.append({
-            'movies': movies,
-            'rule': rule,
-            'w': w,
-            'n': n,
-            'prior': prior,
-            'perfect_info': False,
-            'i': i
-          })
+            simseeds.append({
+              'movies': movies,
+              'rule': rule,
+              'w': w,
+              'n': n,
+              'prior': prior,
+              'perfect_info': perfect,
+              'i': i
+            })
 
 workQueue = Queue.Queue()
 queueLock = threading.Lock()
