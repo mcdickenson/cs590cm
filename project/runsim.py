@@ -61,7 +61,7 @@ def runsim(datawriter=None, movies=[], rule="borda", w=0.5, n_nonmanip=5, prior=
     for nm in nonmanips:
       total_utils_in_outcome += nm.calcUtil(winner_movie)
 
-  output = [ rule 
+  output = [ rule,
     n_nonmanip, 
     w, 
     prior[0],
