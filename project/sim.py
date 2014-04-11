@@ -112,6 +112,9 @@ class Agent(object):
     # check whether the candidate wants the normal winner
     if normal_winner== true_prefs[0].name:
       return true_prefs # no incentive to manipulate
+
+    expressed_prefs = true_prefs
+    expressed_prefs_utils = self.calcUtil(normal_winner_movie)
     # find manipulation
     for movie in movies:
       if movie.name == normal_winner:
@@ -135,9 +138,10 @@ class Agent(object):
       for m in movies:
         if m.name == tmp_winner:
           tmp_winner_movie = m 
-      if self.calcUtil(tmp_winner_movie) > self.calcUtil(normal_winner_movie): # todo: see if utils for tmp_winner > normal_winner
-        return strat_prefs
-    return true_prefs
+      if self.calcUtil(tmp_winner_movie) > expressed_prefs_utils:
+        expressed_prefs = strat_prefs 
+        expressed_prefs_utils = self.calcUtil(tmp_winner_movie)
+    return expressed_prefs
 
 
 # from sim import *

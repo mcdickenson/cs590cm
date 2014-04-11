@@ -71,6 +71,7 @@ def runsim(datawriter=None, movies=[], rule="borda", w=0.5, n_nonmanip=5, prior=
     manipulation,
     manipulator_strat_vote[0], 
     manipulator_strat_vote[1], 
+    manipulator_strat_vote[2], 
     manipulator_strat_vote[3], 
     manipulator_strat_vote[4], 
     winner,
@@ -79,6 +80,7 @@ def runsim(datawriter=None, movies=[], rule="borda", w=0.5, n_nonmanip=5, prior=
     total_utils_manipulator,
     total_utils_in_true_manipulator,
   ]
+  datawriter.writerow(output)
 
 folder_name = "./data/"
 t = ("%f" % time.time())[-6:]
@@ -210,68 +212,3 @@ for t in threads:
 print "Threaded run took %s" % (time.time() - start)
 
 data_outfile.close()
-
-
-
-
-# datawriter=None, movies=[], rule="borda", w=0.5, n_nonmanip=5, prior=(1,1), perfect_info=False):
-
-
-# p = Poll(movies=ary)
-
-# a5 = Agent(w=0.5)
-# a1 = Agent(w=0.1)
-# a9 = Agent(w=0.9)
-
-# a5.calcUtil(ca)
-# a5.calcUtils(ary)
-# a5.calcTruePrefs(ary)
-
-# movies = ary
-
-
-
-
-# vote = a5.calcManipulation(movies, rule=rule, nonmanipvotes=nonmanipvotes)
-# print vote 
-# print vote == a5.calcTruePrefs(movies)
-
-    # nonmanipvotes = [a9.calcTruePrefs(ary)] * 2
-
-
-
-  # a5 = Agent(w=0.5)
-  # a1 = Agent(w=0.1)
-  # a9 = Agent(w=0.9)
-
-  # a5.calcUtil(ca)
-  # a5.calcUtils(ary)
-  # a5.calcTruePrefs(ary)
-
-
-# vote = a5.calcManipulation(movies, rule=rule, nonmanipvotes=nonmanipvotes)
-# print vote 
-# print vote == a5.calcTruePrefs(movies)
-
-
-# def calcManipulation(self, movies, rule="borda", nonmanipvotes=[], prior=(1,1), count=5):
-
-
-# from sim import *
-# ca = Movie("Captain America", 0.89, 0.95)
-# n  = Movie("Noah",            0.77, 0.47)
-# d  = Movie("Divergent",       0.40, 0.78)
-# m  = Movie("Muppets",         0.79, 0.67)
-# gb = Movie("Grand Budapest",  0.92, 0.90)
-
-# ary = [ca, n, d, m, gb]
-# p = Poll(movies=ary)
-
-# a5 = Agent(w=0.5)
-# a1 = Agent(w=0.1)
-# a9 = Agent(w=0.9)
-
-# a5.calcUtil(ca)
-# a5.calcUtils(ary)
-# a5.calcTruePrefs(ary)
-
