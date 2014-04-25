@@ -73,7 +73,7 @@ def runsim(datawriter=None, movies=[], rule="borda", w=0.5, n_nonmanip=5, prior=
     manipulator_strat_vote[1], 
     manipulator_strat_vote[2], 
     manipulator_strat_vote[3], 
-    manipulator_strat_vote[4], 
+    # manipulator_strat_vote[4], 
     winner,
     total_utils_in_outcome,
     total_utils_in_true,
@@ -102,11 +102,12 @@ class ThreadSim(threading.Thread):
       if not workQueue.empty():
         seed = self.queue.get()
         queueLock.release()
-        print "Running sim: rule={0}, w={1}, n={2}, perfect_info={3}, i={4}".format(seed['rule'], 
-          seed['w'], 
-          seed['n'], 
-          seed['perfect_info'],
-          seed['i'])
+        if seed['i']==0:
+          print "Running sim: rule={0}, w={1}, n={2}, perfect_info={3}, i={4}".format(seed['rule'], 
+            seed['w'], 
+            seed['n'], 
+            seed['perfect_info'],
+            seed['i'])
 
         runsim(datawriter=data_writer, 
           movies=movies, 
@@ -131,7 +132,7 @@ col_names = [ "rule",
     "cand2", 
     "cand3", 
     "cand4", 
-    "cand5", 
+    # "cand5", 
     "winner",
     "total_utils_in_outcome",
     "total_utils_in_true",
