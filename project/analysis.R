@@ -5,7 +5,7 @@ library(doBy)
 # load data
 # data = read.csv('simdata-233948.csv', as.is=T)
 # data = read.csv('simdata-487370.csv', as.is=T)
-data = read.csv('simdata-687301.csv', as.is=T)
+data = read.csv('simdata-636462.csv', as.is=T)
 dim(data)
 head(data)
 tail(data)
@@ -18,12 +18,8 @@ data$manip_util_ratio = data$total_utils_manipulator / data$total_utils_in_true_
 summary(data$manip_util_ratio)
 data$total_manip_util_ratio = data$total_utils_in_outcome/ data$total_utils_in_true
 summary(data$total_manip_util_ratio)
-# todo: get this to work
-data = data[-which(is.na(data$total_manip_util_ratio)), ]
-
-summary(data$total_utils_in_true)
-summary(data$total_utils_in_outcome)
-length(which(data$total_utils_in_outcome != data$total_utils_in_true))
+data$total_nonmanip_util_ratio = (data$total_utils_in_outcome - data$total_utils_manipulator)/(data$total_utils_in_true - data$total_utils_in_true_manipulator)
+summary(data$total_nonmanip_util_ratio)
 
 # set params
 rules = c("borda")
@@ -38,8 +34,8 @@ mean(data$manip[data$perfect_info=="False"])
 mean(data$manip[data$w==0.1])
 mean(data$manip[data$w==0.3])
 mean(data$manip[data$w==0.5])
-mean(data$manip[data$w==0.7])
-mean(data$manip[data$w==0.9])
+mean(data$manip[data$w==0.7]) # lower than normal
+mean(data$manip[data$w==0.9]) # higher than normal
 
 mean(data$manip[data$a==9])
 mean(data$manip[data$a==7])
@@ -48,7 +44,7 @@ mean(data$manip[data$a==3])
 mean(data$manip[data$a==1])
 
 # subset
-rule = "borda"
+# rule = "borda"
 a = 1 
 w = 0.5 
 perf = "False"
@@ -69,7 +65,6 @@ summary
 summary$n_nonmanip = as.numeric(summary$n_nonmanip)
 summary = summary[order(summary$rule, summary$n_nonmanip),]
 head(summary)
-class(summary$n_nonmanip)
 
 setwd('~/github/cs590cm/presentation')
 png("plot.png")
@@ -81,16 +76,20 @@ plot(summary$n_nonmanip[summary$rule=="borda"],
   pch=16,
   type='o',
   col='blue')
-# lines(summary$n_nonmanip[summary$rule=="veto"], 
-#   summary$manip.mean[summary$rule=="veto"],
-#   pch=16,
-#   type='o')
-# legend("topright",
-#   legend=c("Borda", "Veto"),
-#   pch=16,
-#   col=c('blue', 'black'))
+lines(summary$n_nonmanip[summary$rule=="veto"], 
+  summary$manip.mean[summary$rule=="veto"],
+  pch=16,
+  type='o')
+lines(summary$n_nonmanip[summary$rule=="plurality"], 
+  summary$manip.mean[summary$rule=="plurality"],
+  pch=16,
+  type='o')
+legend("topright",
+  legend=c("Borda", "Veto"),
+  pch=16,
+  col=c('blue', 'black'))
 dev.off()
-
-# todo: plot proportion of manipulations
+# todo: check values for veto
+# todo: add plurality to legend
 
 # todo: plot how much utility changes in manipulations
