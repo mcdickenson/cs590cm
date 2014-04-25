@@ -36,13 +36,13 @@ def runsim(datawriter=None, movies=[], rule="borda", w=0.5, n_nonmanip=5, prior=
   
   if manipulator_strat_vote == manipulator_true_vote:
     manipulation = False
+    winner = tmp_winner
+  else:
+    manipulation = True
     # run manipulated election
     vote_ary = [manipulator_strat_vote] + nonmanipvotes
     tmp_poll = Poll(movies)
     winner = tmp_poll.run(vote_ary, rule=rule)
-  else:
-    manipulation = True
-    winner = tmp_winner
 
   for movie in movies:
     if movie.name == winner:
@@ -61,6 +61,7 @@ def runsim(datawriter=None, movies=[], rule="borda", w=0.5, n_nonmanip=5, prior=
     total_utils_in_outcome = total_utils_manipulator
     for nm in nonmanips:
       total_utils_in_outcome += nm.calcUtil(winner_movie)
+  # todo: figure out why these never differ
 
   output = [ rule,
     n_nonmanip, 
@@ -162,7 +163,7 @@ movies  = [movieA, movieB, movieC, movieD]
 
 rules = ["borda", "plurality", "veto"]
 ws = [0.1, 0.3, 0.5, 0.7, 0.9]
-priors = [(9,1), (8,2), (7,3), (6,4), (5,5), (4,6), (3,7), (2,8), (1,9)]
+priors = [(9,1), (7,3), (5,5), (3,7), (1,9)]
 ns = range(1,11)
 
 simseeds = []
