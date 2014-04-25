@@ -1,6 +1,7 @@
 # set up workspace
 setwd('~/github/cs590cm/project/data')
 library(doBy)
+require(plotrix)
 
 # load data
 # data = read.csv('simdata-233948.csv', as.is=T)
@@ -66,8 +67,10 @@ summary$n_nonmanip = as.numeric(summary$n_nonmanip)
 summary = summary[order(summary$rule, summary$n_nonmanip),]
 head(summary)
 
-setwd('~/github/cs590cm/presentation')
-png("plot.png")
+##################################################
+# plot manipulation by voting rule 
+setwd('~/github/cs590cm/graphics')
+pdf("manipulation-frequency.pdf")
 plot(summary$n_nonmanip[summary$rule=="borda"], 
   summary$manip.mean[summary$rule=="borda"],
   xlab = "Number of Nonmanipulating Voters",
@@ -79,17 +82,67 @@ plot(summary$n_nonmanip[summary$rule=="borda"],
 lines(summary$n_nonmanip[summary$rule=="veto"], 
   summary$manip.mean[summary$rule=="veto"],
   pch=16,
-  type='o')
+  type='o', 
+  col='red'
+  )
 lines(summary$n_nonmanip[summary$rule=="plurality"], 
   summary$manip.mean[summary$rule=="plurality"],
   pch=16,
   type='o')
 legend("topright",
-  legend=c("Borda", "Veto"),
+  legend=c("Borda", "Plurality", "Veto"),
   pch=16,
-  col=c('blue', 'black'))
+  col=c('blue', 'black', 'red')
+  )
 dev.off()
 # todo: check values for veto
-# todo: add plurality to legend
 
-# todo: plot how much utility changes in manipulations
+##################################################
+# plot how much utility changes in manipulations
+data$nonmanip_utils_in_outcome =  data$total_utils_in_outcome - data$total_utils_manipulator
+data$nonmanip_utils_in_true    =  data$total_utils_in_true    - data$total_utils_in_true_manipulator
+
+borda = data[which(data$rule=="borda"), ]
+names(borda)
+unique(borda$manipulation)
+lst = list(borda$nonmanip_utils_in_outcome[borda$manipulation=="True"], borda$nonmanip_utils_in_outcome[borda$manipulation=="False"])
+
+pdf("nonmanipulators-utilities.pdf")
+multhist(lst, #probability=TRUE,
+  breaks=10,
+  main = "Nonmanipulators' Total Utility"
+)
+legend('topright', 
+  legend=c("Without Manipulation", "With Manipulation"),
+  col=c('grey80', 'grey40'),
+  pch=16
+)
+dev.off()
+
+# todo: how do nonmanipulators do on average in both scenarios?
+# todo: how does this compare to other rules?
+
+pdf("manipulator-utilities.pdf")
+lst = list(borda$total_utils_manipulator[borda$manipulation=="True"], borda$total_utils_manipulator[borda$manipulation=="False"])
+multhist(lst, #probability=TRUE,
+  breaks=5,
+  main = "Manipulator's Utility"
+)
+legend('topleft', 
+  legend=c("Without Manipulation", "With Manipulation"),
+  col=c('grey80', 'grey40'),
+  pch=16
+)
+dev.off()
+
+# todo: how does manipulator do on average in both scenarios?
+# todo: how does this compare to other rules?
+
+
+?multhist
+?hist
+lst
+
+
+
+
