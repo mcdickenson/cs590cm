@@ -11,6 +11,9 @@ class Movie(object):
   def ratings(self):
     return self.ratings
 
+  def name(self):
+    return self.name
+
 
 class Poll(object):
   def __init__(self, movies=[]):
@@ -20,7 +23,7 @@ class Poll(object):
   def __repr__(self):
     tmp = "["
     for m in self.movies:
-      tmp += str(m)
+      tmp += m.name
       tmp += ",\n"
     tmp += "]"
     return tmp
@@ -28,20 +31,19 @@ class Poll(object):
   def addBordaVote(self, preference_array):
     mx = len(preference_array)-1
     for p in preference_array:
-      nm = str(p)
-      # self.votes[p.name] += mx
-      self.votes[nm] += mx
+      # nm = str(p)
+      # self.votes[p] += mx
+      self.votes[str(p)] += mx
       mx -= 1
 
   def addPluralityVote(self, preference_array):
-    nm = str(preference_array[0])
+    # nm = str(preference_array[0])
     # self.votes[preference_array[0].name] += 1
-    self.votes[nm] += 1
+    self.votes[str(preference_array[0])] += 1
 
   def addVetoVote(self, preference_array):
     for p in preference_array[:-1]:
-      nm = str(p)
-      self.votes[nm] += 1
+      self.votes[str(p)] += 1
 
   def addVote(self, preference_array, rule="borda"):
     if rule=="borda":
@@ -127,7 +129,8 @@ class Agent(object):
           tmp_movies.remove(m)
       # tmp_movies.remove(normal_winner)
       middle_prefs = self.calcTruePrefs(tmp_movies)
-      strat_prefs = [true_prefs[0]] + middle_prefs + [normal_winner]
+      # strat_prefs = [true_prefs[0]] + middle_prefs + [normal_winner]
+      strat_prefs = [movie] + middle_prefs + [normal_winner]
       # print "strat_prefs"
       # print strat_prefs
       # run the rule
