@@ -144,16 +144,24 @@ random.seed(8675309)
 total_threads = 2
 simulations_per_seed = 1
 
-ca = Movie("Captain America", 0.89, 0.95)
-n  = Movie("Noah",            0.77, 0.47)
-d  = Movie("Divergent",       0.40, 0.78)
-m  = Movie("Muppets",         0.79, 0.67)
-gb = Movie("Grand Budapest",  0.92, 0.90)
-movies  = [ca, n, d, m, gb]
+
+movieA = Movie("A", 0.00, 0.00)
+movieB = Movie("B", 0.45, 0.45)
+movieC = Movie("C", 0.70, 0.20)
+movieD = Movie("D", .575/.75, 0.0)
+movies  = [movieA, movieB, movieC, movieD]
+
+
+# ca = Movie("Captain America", 0.89, 0.95)
+# n  = Movie("Noah",            0.77, 0.47)
+# d  = Movie("Divergent",       0.40, 0.78)
+# m  = Movie("Muppets",         0.79, 0.67)
+# gb = Movie("Grand Budapest",  0.92, 0.90)
+# movies  = [ca, n, d, m, gb]
 
 rules = ["borda", "plurality", "veto"]
 ws = [0.1, 0.3, 0.5, 0.7, 0.9]
-priors = [(9,1), (7,1), (5,1), (3,1), (1,1)]
+priors = [(9,1), (8,2), (7,3), (6,4), (5,5), (4,6), (3,7), (2,8), (1,9)]
 ns = range(1,11)
 
 simseeds = []

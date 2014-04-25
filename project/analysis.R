@@ -4,12 +4,13 @@ library(doBy)
 
 # load data
 # data = read.csv('simdata-233948.csv', as.is=T)
-data = read.csv('simdata-487370.csv', as.is=T)
+# data = read.csv('simdata-487370.csv', as.is=T)
+data = read.csv('simdata-327246.csv', as.is=T)
 dim(data)
 head(data)
 tail(data)
 
-length(which(data$manipulation=="True"))
+length(which(data$manipulation=="True"))/nrow(data) # 6 % 
 
 names(data)
 data$manip = ifelse(data$manipulation=="True", 1, 0)
@@ -17,7 +18,10 @@ data$manip = ifelse(data$manipulation=="True", 1, 0)
 class(data$total_utils_in_true_manipulator)
 data$manip_util_ratio = data$total_utils_manipulator / data$total_utils_in_true_manipulator
 summary(data$manip_util_ratio)
+data$total_manip_util_ratio = data$total_utils_in_outcome/ data$total_utils_in_true
+summary(data$total_manip_util_ratio)
 # todo: get this to work
+data = data[-which(is.na(data$total_manip_util_ratio)), ]
 
 summary(data$total_utils_in_true)
 summary(data$total_utils_in_outcome)
