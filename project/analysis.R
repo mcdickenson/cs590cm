@@ -110,13 +110,20 @@ data$avg_nonmanip_utils_in_outcome =  data$nonmanip_utils_in_outcome / data$n_no
 data$avg_nonmanip_utils_in_true    =  data$nonmanip_utils_in_true    / data$n_nonmanip
 summary(data$avg_nonmanip_utils_in_outcome)
 
+names(data)
+unique(data$perfect_info)
 borda = data[which(data$rule=="borda"), ]
 plurality = data[which(data$rule=="plurality"), ]
 veto = data[which(data$rule=="veto"), ]
 mean(borda$manip)
 mean(plurality$manip)
 mean(veto$manip)
-# todo: check by perfect/imperfect info
+mean(borda$manip[borda$perfect_info=="True"]) # .202
+mean(borda$manip[borda$perfect_info=="False"]) # .172
+mean(plurality$manip[plurality$perfect_info=="True"]) # .03
+mean(plurality$manip[plurality$perfect_info=="False"]) # .01
+mean(veto$manip[veto$perfect_info=="True"]) # .8
+mean(veto$manip[veto$perfect_info=="False"]) # .8
 
 names(borda)
 unique(borda$manipulation)

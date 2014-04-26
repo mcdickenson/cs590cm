@@ -60,7 +60,6 @@ legend('bottomright',
 
 # pathological case
 myColors = c("#e41a1c", "#377eb8", "#4daf4a", "#984ea3")
-x = .575/.75
 fakeMovies = as.data.frame(matrix(NA, nrow=4, ncol=3))
 colnames(fakeMovies) = c("name", "critics", "audience")
 fakeMovies[1,] = c("A", 0.00, 0.60)
