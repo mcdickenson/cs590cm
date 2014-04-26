@@ -89,8 +89,11 @@ Desirable properties of the voting method for this application arise from both n
 
 If there are two candidates, the only social decision method that satisfies neutrality, anonymity, and positive responsiveness (if a candidate is tied for the win and moves up in rankings, it will become the winner) is majority rule \citep{may1952}. Less strict conditions, such as Pareto optimality, also motivate the use of majority rule even if positive responsiveness is thought to be too strict \citep{acsan2002,j2003majority}. If there are more than two candidates, only a scoring rule will satisfy anonymity, neutrality, reinforcement, and continuity (if two subgroups of voters select different winners, then there is some number $k$ such that $k$ copies of the first subgroup plus a single copy of the second subgroup will elect the first group's winner) \citep{young1975}. Scoring rules have the additional advantage of being computationally easy.
 
-What voting rule should we choose? Borda count chooses the majority alternative (whenever it exists), and satisfies anonymity, neutrality, unanimity, and reinforcement. A major downside of the Borda rule is that it is easily manipulable \citep{bartholdi1989computational}. However, for a particular type of manipulation (Constructive Coalitional Weighted-Manipulation), manipulating Borda is NP-complete for three candidates, and it is NP-hard for another manipulation (Constructive Individual Unweighted-Manipulation) under uncertainty about others' votes \citep{conitzer2007elections}. More than three candidates should be present for most use cases of the application proposed here. Borda is not unique in this respect: with three or more candidates, there no reasonable voting rule is non-manipulable \citep{gibbard1973manipulation,satterthwaite1975strategy,xia2009complexity}. To assess the relative merits of using Borda in this application, Monte Carlo simulations will be used to estimate its vulnerability to manipulation compared to the plurality and veto rules.
+What voting rule should we choose? Borda count chooses the majority alternative (whenever it exists), and satisfies anonymity, neutrality, unanimity, and reinforcement. A major downside of the Borda rule is that it is easily manipulable \citep{bartholdi1989computational}. However, for a particular type of manipulation (Constructive Coalitional Weighted-Manipulation), manipulating Borda is NP-complete for three candidates, and it is NP-hard for another manipulation (Constructive Individual Unweighted-Manipulation) under uncertainty about others' votes \citep{conitzer2007elections}. More than three candidates should be present for most use cases of the application proposed here. To assess the relative merits of using Borda in this application, Monte Carlo simulations will estimate its vulnerability to manipulation.
 
+% conitzer2003universal
+% conitzer2007elections
+% xia2009complexity
 
 \subsection{User Experience}
 
@@ -100,7 +103,7 @@ The application described above has been implemented using the Rails framework i
 \item The user then invites voters by supplying their names and email addresses
 \item An email is sent to each voter inviting her to participate in the poll
 \item If the voter chooses to cast a vote, she clicks the unique link in the email (to avoid the need for remembering the password for a user account) and is taken to the voting page (right pane of Figure \ref{example-screens})
-\item When all votes are recorded or a deadline has been reached (minimum of one hour before the first candidate showtime), an email is sent to all voters with the outcome
+\item When all votes are recorded or a deadline has been reached (minimum of one hour before the first canddiate showtime), an email is sent to all voters with the outcome
 \end{enumerate}
 
 
@@ -133,7 +136,7 @@ The use of a voting application overcomes each of these disadvantages. The numbe
 
 \section{Simulation and Analysis}
 
-This application reduces the complexity of preference elicitation (as described above), but how vulnerable is it to manipulation? Manipulability is a known weakness of the Borda voting method. To assess the risk of manipulation in this application, simulations were conducted to compare Borda count to the plurality and veto rules. 
+This application reduces the complexity of preference elicitatation (as described above), but how vulnerable is it to manipulation? Manipulability is a known weakness of the Borda voting method. To assess the risk of manipulation in this application, simulations were conducted to compare Borda count to the plurality and veto rules. 
 
 \subsection{Manipulation Method}
 
@@ -168,7 +171,7 @@ Voters' weights were sampled from the Beta distribution with parameters $(\alpha
 
 \subsection{Frequency of Manipulation}
 
-How frequently was manipulation observed in the simulations? Overall, manipulation occurred in 18.7 percent of simulations using the Borda rule, 2.1 percent of simulations using plurality, and 80 percent of simulations with the veto rule. For both Borda and plurality, manipulation was observed less often under imperfect information (see Table \ref{table:frequencies}). For these two rules the rate of manipulation decreases in the number of non-manipulating voters, and the difference between them is negligible with eight or more non-manipulators voting (see Figure \ref{manipulation-frequency}. In reality the manipulator will have imperfect information about others' votes, suggesting that actual manipulations with this application will be uncommon.\footnote{A pre-round of pairwise competition between alternatives could further reduce the vulnerabity of the voting process to manipulation \citep{conitzer2003universal}.}
+How frequently was manipulation observed in the simulations? Overall, manipulation occurred in 18.7 percent of simulations using the Borda rule, 2.1 percent of simulations using plurality, and 80 percent of simulations with the veto rule. For both Borda and plurality, manipulation was observed less often under imperfect information (see Table \ref{table:frequencies}). For these two rules the rate of manipulation decreases in the number of non-manipulating voters, and the difference between them is negligible with eight or more non-manipulators voting (see Figure \ref{manipulation-frequency}. In reality the manipulator will have imperfect information about others' votes, suggesting that actual manipulations with this application will be uncommon. 
 
 \input{manipulation-frequency}
 
@@ -211,7 +214,7 @@ How do voters fare under each of the three voting rules?\footnote{Another exampl
 
 There are several promising avenues for further research on this project. A more sophisticated simulation model could consider a prior stage in which the poll organizer selects candidates from a larger pool of options, and assess the effect that this has on the outcome. The voting rule could also be left up to the participants by asking which criteria are desired for a particular situation. Instead of voting an auction could be used so that group members split the cost of the outing, with lower costs for those who dislike the outcome (setting a minimum threshold ensures that the outing occurs only if enough revenue is raised to pay for it). A more sophisticated model of movie-going would account for the combinatorial nature of movies--as combinations of showtimes, films, and locations--and allow voters to express preferences over each of these features separately. This would allow, for example, voters who feel strongly about the time of day but care less about what film they view to have their preferences taken into account; however, finding an outcome to satisfy all participants is computationally hard \citep{lu2011budgeted}. 
 
-Implementing a web application in which users can employ Borda voting to coordinate a group decision extends the use of social choice to a popular setting. Using a formal voting process reduces the complexity of preference elicitation, prevents cascade effects arising from sequential preference revelation, and ensures privacy for voters, reducing the incentive for preference falsification. The Borda rule exhibits a number of desirable characteristics including anonymity, neutrality, unanimity, universal domain, and reinforcement. The major downside of Borda count is its manipulability; however, Monte Carlo simulations showed that we should expect such manipulation to be rare in practice (especially with many voters) and that the decreases in average utility are relatively modest. Employing this application could greatly improve the coordination process for informal social gatherings. 
+Implementing a web application in which users can employ Borda voting to coordinate a group decision extends the use of social choice to a popular setting. Using a formal voting process reduces the complexity of preference elicitation, prevents cascade effects arising from sequential preference revelation, and ensures privacy for voters, reducing the incentive for preference falsification. The Borda rule exhibits a number of desiragle characteristics including anonymity, neutrality, unanimity, universal domain, and reinforcement. The major downside of Borda count is its manipulability; however, Monte Carlo simulations showed that we should expect such manipulation to be rare in practice (especially with many voters) and that the decreases in average utility are relatively modest. Employing this application could greatly improve the coordination process for informal social gatherings. 
 
 
 
