@@ -83,7 +83,9 @@ for(i in 1:nrow(fakeMovies)){
 head(fakeUtils)
 tail(fakeUtils)
 
-plot(fakeUtils$w, fakeUtils[,2], # capt-america
+setwd('~/github/cs590cm/graphics')
+pdf("fakeUtils.pdf")
+plot(fakeUtils$w, fakeUtils[,2], 
     type='l',
     col=myColors[1],
     lwd=2,
@@ -103,7 +105,6 @@ legend('topleft',
     legend=fakeMovies$name,
     pch=16
   )
-
-
+dev.off()
 
 

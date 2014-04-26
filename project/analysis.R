@@ -102,18 +102,31 @@ dev.off()
 data$nonmanip_utils_in_outcome =  data$total_utils_in_outcome - data$total_utils_manipulator
 data$nonmanip_utils_in_true    =  data$total_utils_in_true    - data$total_utils_in_true_manipulator
 
+names(data)
+class(data$n_nonmanip)
+data$n_nonmanip = as.numeric(data$n_nonmanip)
+summary(data$n_nonmanip)
+data$avg_nonmanip_utils_in_outcome =  data$nonmanip_utils_in_outcome / data$n_nonmanip
+data$avg_nonmanip_utils_in_true    =  data$nonmanip_utils_in_true    / data$n_nonmanip
+summary(data$avg_nonmanip_utils_in_outcome)
+
 borda = data[which(data$rule=="borda"), ]
 plurality = data[which(data$rule=="plurality"), ]
 veto = data[which(data$rule=="veto"), ]
+mean(borda$manip)
+mean(plurality$manip)
+mean(veto$manip)
+# todo: check by perfect/imperfect info
+
 names(borda)
 unique(borda$manipulation)
-lst = list(borda$nonmanip_utils_in_outcome[borda$manipulation=="True"], borda$nonmanip_utils_in_outcome[borda$manipulation=="False"])
+lst = list(borda$avg_nonmanip_utils_in_outcome[borda$manipulation=="True"], borda$avg_nonmanip_utils_in_outcome[borda$manipulation=="False"])
 
 pdf("nonmanipulators-utilities.pdf")
 multhist(lst, #probability=TRUE,
   breaks=10
   )
-legend('topright', 
+legend('topleft', 
   legend=c("Without Manipulation", "With Manipulation"),
   col=c('grey80', 'grey40'),
   pch=16
@@ -121,17 +134,16 @@ legend('topright',
 dev.off()
 
 # how do nonmanipulators do on average in both scenarios?
-summary(borda$nonmanip_utils_in_outcome[borda$manipulation=="True"]) / 4 # mean 1.70
-summary(borda$nonmanip_utils_in_outcome[borda$manipulation=="False"]) / 4 # mean 3.04
-# how does this compare to other rules?
-summary(plurality$nonmanip_utils_in_outcome[plurality$manipulation=="True"]) / 4 # mean 1.60
-summary(plurality$nonmanip_utils_in_outcome[plurality$manipulation=="False"]) / 4 # mean 2.88
-summary(veto$nonmanip_utils_in_outcome[veto$manipulation=="True"]) / 4 # mean 2.38
-summary(veto$nonmanip_utils_in_outcome[veto$manipulation=="False"]) / 4 # mean 2.47
+mean(borda$avg_nonmanip_utils_in_outcome[borda$manipulation=="True"]) # 0.40
+# sd(borda$avg_nonmanip_utils_in_outcome[borda$manipulation=="True"]) # 0.14
+mean(borda$avg_nonmanip_utils_in_outcome[borda$manipulation=="False"]) # 0.52
+# sd(borda$avg_nonmanip_utils_in_outcome[borda$manipulation=="False"]) # 0.10
 
-# *************
-# todo: divide by actual number of non-manipulators
-# *************
+# how does this compare to other rules?
+summary(plurality$avg_nonmanip_utils_in_outcome[plurality$manipulation=="True"]) # mean 0.43
+summary(plurality$avg_nonmanip_utils_in_outcome[plurality$manipulation=="False"]) # mean 0.52
+summary(veto$avg_nonmanip_utils_in_outcome[veto$manipulation=="True"]) # mean 0.43
+summary(veto$avg_nonmanip_utils_in_outcome[veto$manipulation=="False"]) # mean 0.45
 
 pdf("manipulator-utilities.pdf")
 lst = list(borda$total_utils_manipulator[borda$manipulation=="True"], borda$total_utils_manipulator[borda$manipulation=="False"])
@@ -149,13 +161,13 @@ dev.off()
 # summary(borda$nonmanip_utils_in_outcome[borda$manipulation=="False"]) # mean 3.04
 
 # how does manipulator do on average in both scenarios?
-summary(borda$total_utils_manipulator[borda$manipulation=="True"]) # mean .58
-summary(borda$total_utils_manipulator[borda$manipulation=="False"]) # mean .44
+summary(borda$total_utils_manipulator[borda$manipulation=="True"]) # mean .584
+summary(borda$total_utils_manipulator[borda$manipulation=="False"]) # mean .436
 # how does this compare to other rules?
-summary(plurality$total_utils_manipulator[plurality$manipulation=="True"]) # mean 0.55
-summary(plurality$total_utils_manipulator[plurality$manipulation=="False"]) # mean 0.44
-summary(veto$total_utils_manipulator[veto$manipulation=="True"]) # mean 0.51
-summary(veto$total_utils_manipulator[veto$manipulation=="False"]) # mean 2.55
+summary(plurality$total_utils_manipulator[plurality$manipulation=="True"]) # mean 0.552
+summary(plurality$total_utils_manipulator[plurality$manipulation=="False"]) # mean 0.443
+summary(veto$total_utils_manipulator[veto$manipulation=="True"]) # mean 0.510
+summary(veto$total_utils_manipulator[veto$manipulation=="False"]) # mean 0.550
 
 
 

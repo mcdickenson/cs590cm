@@ -82,7 +82,7 @@ Viewing the group decision as an elicitation problem helps to motivate the appli
 %Define this problem. What question are you trying to
 %solve? What is the goal of the project?
 
-The software application will be useful for a group coordinating on a single outcome by aggregating their preferences, e.g. selecting a movie for a night out with friends. A user creates a poll by supplying a question (``What movie should we see?''), candidate options (movies) and voters (a list of email addresses to be contacted). A unique link is then sent to each voter, who supplies her ranking of the choices. When all votes have been recorded, an email is sent to all voters with the outcome (and possibly more info, such as anonymized rankings), and a link where they can indicate their satisfaction with the outcome.
+The software application will be useful for a group coordinating on a single outcome by aggregating their preferences, e.g. selecting a movie for a night out with friends. A user creates a movie poll by supplying candidate options (movies) and voters (a list of email addresses to be contacted). A unique link is then sent to each voter, who supplies her ranking of the choices. When all votes have been recorded, an email is sent to all voters with the outcome (and possibly more info, such as anonymized rankings), and a link where they can indicate their satisfaction with the outcome.
 
 One goal for this application is ease of use, in order to set it apart from available online survey applications.\footnote{E.g. \url{http://surveymonkey.com} and \url{http://doodle.com}.} If a user does not submit preferences by a pre-specified deadline, her preferences will be imputed by a default ranking, such as critics' ratings of the candidate movies on \href{http://rottentomatoes.com}{Rotten Tomatoes}. Other desiderata for the voting procedure are discussed in the next section.
 
@@ -111,7 +111,17 @@ What voting rule should we choose? Borda count chooses the majority alternative 
 
 \subsection{User Experience}
 
-\begin{figure}
+The application described above has been implemented using the Rails framework in the Ruby language. Although the application has not been deployed publicly, the screenshots in Figure \ref{example-screens} give a sense of the user experience. The basic usage process is as follows:
+\begin{enumerate}
+\item Upon arriving at the homepage, a user is invited to create a poll by supplying candidate options (movie-showtime-location tuples drawn from the Fandango API--see the left pane of Figure \ref{example-screens})
+\item The user then invites voters by supplying their names and email addresses
+\item An email is sent to each voter inviting her to participate in the poll
+\item If the voter chooses to cast a vote, she clicks the unique link in the email (to avoid the need for remembering the password for a user account) and is taken to the voting page (right pane of Figure \ref{example-screens})
+\item When all votes are recorded or a deadline has been reached (minimum of one hour before the first canddiate showtime), an email is sent to all voters with the outcome
+\end{enumerate}
+
+
+\begin{figure}[h!]
  \begin{center}
   \begin{minipage}{0.45\textwidth}
     \begin{center}
@@ -133,6 +143,9 @@ What voting rule should we choose? Borda count chooses the majority alternative 
 
 \subsection{Complexity of Elicitation}
 
+How does using this application improve the process of selecting a movie for a group outing? One advantage of this method is that it reduces the average complexity of preference elicitation. When a group coordinates directly over email, there are several disadvantages. First, the pool of voters is not pre-defined: anyone could be added to or omitted from the email conversation at any time. Second, the domain of candidates is not fixed: a new candidate could be added at any time (even when the group is nearing a consensus), extending the time to elicitation exponentially. Third, preferences are expressed in sequence, leading to potential cascading effects resulting in suboptimal outcomes. 
+% todo: cite literature on cascading/herd behavior
+
 
 \section{Simulation and Analysis}
 
@@ -147,22 +160,45 @@ What voting rule should we choose? Borda count chooses the majority alternative 
 
 \subsection{Results and Interpretation}
 
+\subsubsection{Frequency of Manipulation}
+% > mean(veto$manip)
+% [1] 0.8
+% > mean(borda$manip)
+% [1] 0.187
+% > mean(plurality$manip)
+% [1] 0.02148
+% > mean(veto$manip)
+% [1] 0.8
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.4]{../graphics/manipulation-frequency.pdf}
+\caption{Observed frequency of manipulation by voting rule and number of non-manipulating voters.}
+\label{manipulation-frequency}
+\end{center}
+\end{figure}
+
+\subsubsection{Utility With and Without Manipulation}
+
 \input{average-utilities}
 
-\begin{figure}
 \begin{center}
-\includegraphics[scale=0.3]{../graphics/nonmanipulators-utilities.pdf}
-\caption{Nonmanipulators' (total) utilities with and without manipulation}
-\end{center}
-\end{figure}
-
-\begin{figure}
+\begin{figure}[h!]
+\begin{minipage}{0.45\textwidth}
 \begin{center}
-\includegraphics[scale=0.3]{../graphics/manipulator-utilities.pdf}
-\caption{Manipulator's utilities with and without manipulation}
+\includegraphics[scale=0.4]{../graphics/nonmanipulators-utilities.pdf}
 \end{center}
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.45\textwidth}
+\begin{center}
+\includegraphics[scale=0.4]{../graphics/manipulator-utilities.pdf}
+\end{center}
+\end{minipage}
+\caption{Nonmanipulators' average utilities (left) and manipulator's utilities (right) with and without manipulation for Borda count simulations.}
+\label{nonmanip-manip-utils}
 \end{figure}
-% todo: put both of these in 1 line w/minipage
+\end{center}
 
 
 \section{Related Work}
